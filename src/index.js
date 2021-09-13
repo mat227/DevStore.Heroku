@@ -20,14 +20,14 @@ app.post('/produto', async (req, resp) => {
         let prod = req.body;
 
         let r = await db.tb_produto.create({
-            nm_produto: prod.nmproduto,
+            nm_produto: prod.nomeProduto,
             ds_categoria: prod.categoria,
-            vl_preco_de: prod.precode,
-            vl_preco_por:  prod.precopor,
+            vl_preco_de: prod.precoDe,
+            vl_preco_por:  prod.precoPor,
             vl_avaliacao: prod.avaliacao,
-            ds_produto: prod.dsproduto,
+            ds_produto: prod.descricao,
             qtd_estoque: prod.estoque,
-            img_produto: prod.img,
+            img_produto: prod.imagem,
             bt_ativo: true,
             dt_inclusao: new Date()
         })
