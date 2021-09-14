@@ -95,14 +95,14 @@ app.put('/produto/:id', async (req, resp) => {
 
         let r = await db.tb_produto.update(
             
-            {     nm_produto: prod.nmproduto,
+            {   nm_produto: prod.nmproduto,
                 ds_categoria: prod.categoria,
-                vl_preco_de: prod.precode,
-                vl_preco_por:  prod.precopor,
-                vl_alaliacao: prod.avaliacao,
-                ds_produto: prod.dsproduto,
+                vl_preco_de: prod.precoDe,
+                vl_preco_por:  prod.precoPor,
+                vl_avaliacao: prod.avaliacao,
+                ds_produto: prod.descricao,
                 qtd_estoque: prod.estoque,
-                Img_produto: prod.img,
+                img_produto: prod.imagem,
                 bt_ativo: true,
                 dt_inclusao: new Date()
             },
