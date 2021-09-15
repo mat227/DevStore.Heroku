@@ -65,7 +65,7 @@ app.post('/produto', async (req, resp) => {
 
         let contem = await db.tb_produto.findOne({where: {nm_produto: prod.nomeProduto}});
         if(contem != null) {
-            return resp.send({erro: 'Produto ja existe!'});
+            return resp.send({erro: 'Produto já existe!'});
         }
 
         let r = await db.tb_produto.create({
