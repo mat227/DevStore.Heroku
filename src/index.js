@@ -19,22 +19,6 @@ app.post('/produto', async (req, resp) => {
     try {
         
         let prod = req.body;
-       
-        if(isNaN(prod.avaliacao) || prod.avaliacao < 0 || prod.avaliacao > 10) {
-            return resp.send({erro: 'O campo Avaliação inválido'});
-        }
-
-        if(isNaN(prod.precoDe) || prod.precoDe < 0) {
-            return resp.send({erro: 'O campo Preço DE inválido'});
-        }
-
-        if(isNaN(prod.precoPor) || prod.precoPor < 0) {
-            return resp.send({erro: 'O campo Preço POR inválido'});
-        }
-
-        if(isNaN(prod.estoque) || prod.estoque < 0) {
-            return resp.send({erro: 'O campo Estoque inválido'});
-        }
         if(prod.nomeProduto == "") {
             return resp.send({erro: 'O campo Nome é obrigatório'})
         }
@@ -44,6 +28,16 @@ app.post('/produto', async (req, resp) => {
         if(prod.avaliacao == "") {
             return resp.send({erro: 'O campo Avaliação é obrigatório'})
         }
+        if(isNaN(prod.avaliacao)) {
+            return resp.send({erro: 'O campo Avaliação não pode ter letras como valor'});
+        }
+        if(prod.avaliacao <= 0) {
+            return resp.send({erro: 'O campo Avaliação não pode ter um número negativo'});
+        }
+        if(prod.avaliacao > 10) {
+            return resp.send({erro: 'O campo Avaliação não pode ser maior que 10'});
+        }
+
         if(prod.imagem == "") {
             return resp.send({erro: 'O campo Link imagem é obrigatório'})
         }
@@ -59,7 +53,19 @@ app.post('/produto', async (req, resp) => {
         if(prod.estoque == "") {
             return resp.send({erro: 'O campo Estoque é obrigatório'})
         }
+       
+        if(isNaN(prod.precoDe) || prod.precoDe < 0) {
+            return resp.send({erro: 'O campo Preço DE está inválido'});
+        }
 
+        if(isNaN(prod.precoPor) || prod.precoPor < 0) {
+            return resp.send({erro: 'O campo Preço POR está inválido'});
+        }
+
+        if(isNaN(prod.estoque) || prod.estoque < 0) {
+            return resp.send({erro: 'O campo Estoque está inválido'});
+        }
+       
 
 
 
@@ -92,6 +98,53 @@ app.put('/produto/:id', async (req, resp) => {
     try {
         let id = req.params.id;
         let prod = req.body;
+        if(isNaN(prod.avaliacao)) {
+            return resp.send({erro: 'O campo Avaliação não pode ter letras como valor'});
+        }
+        if(prod.avaliacao <= 0) {
+            return resp.send({erro: 'O campo Avaliação não pode ter um número negativo'});
+        }
+        if(prod.avaliacao > 10) {
+            return resp.send({erro: 'O campo Avaliação não pode ser maior que 10'});
+        }
+
+        if(isNaN(prod.precoDe) || prod.precoDe < 0) {
+            return resp.send({erro: 'O campo Preço DE está inválido'});
+        }
+
+        if(isNaN(prod.precoPor) || prod.precoPor < 0) {
+            return resp.send({erro: 'O campo Preço POR está inválido'});
+        }
+
+        if(isNaN(prod.estoque) || prod.estoque < 0) {
+            return resp.send({erro: 'O campo Estoque está inválido'});
+        }
+        if(prod.nmproduto == "") {
+            return resp.send({erro: 'O campo Nome é obrigatório'})
+        }
+        if(prod.categoria == "") {
+            return resp.send({erro: 'O campo Categoria é obrigatório'})
+        }
+        if(prod.avaliacao == "") {
+            return resp.send({erro: 'O campo Avaliação é obrigatório'})
+        }
+        if(prod.imagem == "") {
+            return resp.send({erro: 'O campo Link imagem é obrigatório'})
+        }
+        if( prod.descricao == "") {
+            return resp.send({erro: 'O campo Descrição é obrigatório'})
+        }
+        if(prod.precoDe == "") {
+            return resp.send({erro: 'O campo Preco DE é obrigatório'})
+        }
+        if( prod.precoPor == "") {
+            return resp.send({erro: 'O campo Preco POR é obrigatório'})
+        }
+        if(prod.estoque == "") {
+            return resp.send({erro: 'O campo Estoque é obrigatório'})
+        }
+
+
 
         let r = await db.tb_produto.update(
             
